@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class HMMSync
+public class HMMSync : MonoBehaviour
 {
     private int usedPlaces = 0;
     private static float[][] placeProbabilities = new float[][]
@@ -35,34 +35,50 @@ public class HMMSync
 
     private void RestartArray()
     {
-        Array.Copy(placeProbabilities, this.syncedPlaces, placeProbabilities[0].Length);
+        Array.Copy(placeProbabilities, this.syncedPlaces, placeProbabilities.Length);
+        this.usedPlaces = 0;
+    }
+
+    private int GetNonZeroProbs(int placeArray)
+    {
+        int nonZeroProbs = 0;
+        for (int place = 0; place < this.syncedPlaces[placeArray].Length; place++)
+        {
+            if (Math.Abs(this.syncedPlaces[placeArray][place]) > 0.0f) nonZeroProbs++;
+        }
+        return nonZeroProbs;
     }
 
     public int GetPlace(int place)
     {
-        float random = Random.Range(0.0f, 1.0f);
         int newPlace = -1;
         while(newPlace == -1) {
+            float random = Random.Range(0.0f, 1.0f);
             float rng = (float)System.Math.Round(random * 100f) / 100f;
-            float portion = 0;
 
-            for (int i = 0; i < 8; i++)
+            if (rng > 0.0f)
             {
-                portion += placeProbabilities[place][i];
-                if (rng <= portion)
+                float portion = 0;
+
+                for (int i = 0; i < syncedPlaces[place].Length; i++)
                 {
-                    newPlace = i;
-                    this.usedPlaces++;
-                    if (this.usedPlaces < placeProbabilities[0].Length)
+                    portion += syncedPlaces[place][i];
+                    if (rng <= portion)
                     {
-                        this.SyncPlaces(i);
-                    }
-                    else
-                    {
-                        this.RestartArray();
+                        newPlace = i;
+                        break;
                     }
                 }
             }
+        }
+        this.usedPlaces++;
+        if (this.usedPlaces < syncedPlaces[place].Length)
+        {
+            this.SyncPlaces(newPlace);
+        }
+        else
+        {
+            this.RestartArray();
         }
         return newPlace;
     }
@@ -73,10 +89,11 @@ public class HMMSync
         {
             float currentPlaceProb = this.syncedPlaces[placeArray][usedPlace];
             this.syncedPlaces[placeArray][usedPlace] = 0.0f;
+            float complement = currentPlaceProb / this.GetNonZeroProbs(placeArray);
             for (int place = 0; place < this.syncedPlaces[placeArray].Length; place++)
             {
-                if(this.syncedPlaces[placeArray][place] != 0.0f) {
-                    this.syncedPlaces[placeArray][place] += currentPlaceProb / (placeProbabilities[0].Length - this.usedPlaces);
+                if(this.syncedPlaces[placeArray][place] > 0.0f) {
+                    this.syncedPlaces[placeArray][place] += complement;
                 }
             }
         }
