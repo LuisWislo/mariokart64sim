@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Kart : MonoBehaviour
 {
+    private int place = 1;
     public Transform kart;
     // Start is called before the first frame update
     void Start()
@@ -21,12 +22,14 @@ public class Kart : MonoBehaviour
     {
         if(collider.tag == "item")
         {
-            GetItem();
+            GetStuff();
         }
     }
 
-    void GetItem()
+    void GetStuff()
     {
-        Debug.Log("Got item: " + ItemBox.GetItem(2));
+        place = ItemBox.getPlace(place);
+        Debug.Log("Got item: " + place);
+        Debug.Log("Got item: " + ItemBox.getItem(place));
     }
 }
