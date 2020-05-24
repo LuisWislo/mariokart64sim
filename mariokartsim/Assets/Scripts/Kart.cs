@@ -29,7 +29,7 @@ public class Kart : MonoBehaviour
     void GetStuff()
     {
         place = ItemBox.getPlace(place);
-        Debug.Log("Got item: " + place);
+        Debug.Log("Got place: " + place);
         Debug.Log("Got item: " + ItemBox.getItem(place));
     }
 }
