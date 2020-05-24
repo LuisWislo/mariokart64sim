@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7219481231008741280}
   - component: {fileID: 7219481231008741281}
   - component: {fileID: 7219481231008741294}
-  - component: {fileID: -5181431271291172288}
   m_Layer: 4
   m_Name: Kart
   m_TagString: Untagged
@@ -30,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7219481231008741295}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -34.2, y: 0, z: -12.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -107,27 +106,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c95c34ea3c08048afe4b74c135c88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWayPoint: 0
-  currentLap: 1
-  laps: 3
-  speed: 10
-  availableWaypoints: 27
-  finalWaypoint: 26
---- !u!114 &-5181431271291172288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7219481231008741295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c95c34ea3c08048afe4b74c135c88d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentWayPoint: 0
-  currentLap: 1
-  laps: 3
-  speed: 10
-  availableWaypoints: 27
-  finalWaypoint: 26
