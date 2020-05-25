@@ -20,7 +20,7 @@ public class Waypoints : MonoBehaviour
         for (int wp = 0; wp < wayPointList.Length; wp++)
         {
             wayPointList[wp] = GameObject.Find("Waypoint" + (wp)).transform;
-            //wayPointList[wp].GetComponent<MeshRenderer>().enabled = false;
+            wayPointList[wp].GetComponent<MeshRenderer>().enabled = false;
         }
         targetWayPoint = wayPointList[currentWayPoint];
     }

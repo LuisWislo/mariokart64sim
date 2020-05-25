@@ -24,7 +24,6 @@ public class Kart : MonoBehaviour
     private Transform targetIWP;
     private float speed = 3f;
     private int currentIWP;
-    private int availableIWP = 8;
 
     private int availableWaypoints = 7;
     Transform targetWayPoint;

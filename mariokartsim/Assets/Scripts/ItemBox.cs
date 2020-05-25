@@ -6,21 +6,21 @@ public static class ItemBox
 {
     private static float[][] itemProbabilities = new float[][]
     {
-        new float[] {0.30f, 0.05f, 0.30f, 0.05f, 0.05f, 0.00f, 0.00f, 0.00f, 0.10f, 0.00f, 0.05f, 0.10f, 0.00f, 0.00f}, //1st
-        new float[] {0.00f, 0.05f, 0.05f, 0.10f, 0.15f, 0.20f, 0.00f, 0.05f, 0.05f, 0.05f, 0.05f, 0.05f, 0.15f, 0.05f}, //2nd
-        new float[] {0.00f, 0.00f, 0.00f, 0.10f, 0.20f, 0.20f, 0.00f, 0.05f, 0.00f, 0.10f, 0.00f, 0.05f, 0.20f, 0.10f}, //3rd
-        new float[] {0.00f, 0.00f, 0.00f, 0.00f, 0.15f, 0.20f, 0.05f, 0.10f, 0.00f, 0.15f, 0.00f, 0.05f, 0.20f, 0.10f}, //4th
-        new float[] {0.00f, 0.00f, 0.00f, 0.00f, 0.10f, 0.20f, 0.05f, 0.10f, 0.00f, 0.15f, 0.00f, 0.05f, 0.25f, 0.10f}, //5th
-        new float[] {0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.20f, 0.10f, 0.15f, 0.00f, 0.20f, 0.00f, 0.00f, 0.25f, 0.10f}, //6th
-        new float[] {0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.20f, 0.10f, 0.20f, 0.00f, 0.30f, 0.00f, 0.00f, 0.10f, 0.10f}, //7th
-        new float[] {0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.20f, 0.15f, 0.20f, 0.00f, 0.30f, 0.00f, 0.00f, 0.05f, 0.10f}  //8th
+        new float[] {0.57f, 0.13f, 0.02f, 0.13f, 0.02f, 0.02f, 0.00f, 0.00f, 0.00f, 0.05f, 0.00f, 0.02f, 0.04f, 0.00f, 0.00f}, //1st
+        new float[] {0.57f, 0.00f, 0.02f, 0.02f, 0.04f, 0.07f, 0.09f, 0.00f, 0.02f, 0.02f, 0.02f, 0.02f, 0.02f, 0.07f, 0.02f}, //2nd
+        new float[] {0.57f, 0.00f, 0.00f, 0.00f, 0.04f, 0.09f, 0.09f, 0.00f, 0.02f, 0.00f, 0.04f, 0.00f, 0.02f, 0.09f, 0.04f}, //3rd
+        new float[] {0.57f, 0.00f, 0.00f, 0.00f, 0.00f, 0.06f, 0.09f, 0.02f, 0.04f, 0.00f, 0.07f, 0.00f, 0.02f, 0.09f, 0.04f}, //4th
+        new float[] {0.57f, 0.00f, 0.00f, 0.00f, 0.00f, 0.04f, 0.09f, 0.02f, 0.04f, 0.00f, 0.07f, 0.00f, 0.02f, 0.11f, 0.04f}, //5th
+        new float[] {0.57f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.09f, 0.04f, 0.06f, 0.00f, 0.09f, 0.00f, 0.00f, 0.11f, 0.04f}, //6th
+        new float[] {0.57f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.09f, 0.04f, 0.09f, 0.00f, 0.13f, 0.00f, 0.00f, 0.04f, 0.04f}, //7th
+        new float[] {0.57f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.09f, 0.06f, 0.09f, 0.00f, 0.13f, 0.00f, 0.00f, 0.02f, 0.04f}  //8th
     };
 
     private static int noItems = itemProbabilities[0].Length;
 
     private static string[] itemNames = new string[]
     {
-        //"None",
+        "No Item",
         "Banana",
         "Banana Bunch",
         "Green Shell",
