@@ -20,7 +20,7 @@ public class Kart : MonoBehaviour
     private int currentLap = 1;
     private int laps = 3;
     private float speed = 10f;
-    private int availableWaypoints = 29;
+    private int availableWaypoints = 25;
     Transform targetWayPoint;
     private Transform[] wayPointList; //Sigue indices de 0 a n-1
 
