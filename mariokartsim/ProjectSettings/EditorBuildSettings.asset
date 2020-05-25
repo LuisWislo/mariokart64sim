@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/OneKartSimulator.unity
+    guid: 1805fc852aef4a846aa574e43f182cfe
   m_configObjects: {}

@@ -91,6 +91,7 @@ public class Kart : MonoBehaviour
     void GetInfo()
     {
         this.place = this.syncer.GetPlace(this.place);
+        //Debug.Log(this.character + "got " + this.place);
         this.item = ItemBox.getItem(this.place);
     }
 
