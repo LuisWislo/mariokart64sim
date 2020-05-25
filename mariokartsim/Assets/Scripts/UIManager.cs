@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     // Start is called before the first frame update
     //private GameObject[] currentPlaces;
     private float[][] targetPositions;
+    public GameObject[] items;
 
     void Start()
     {
@@ -31,11 +33,6 @@ public class UIManager : MonoBehaviour
 
     }
 
-    /*public void receivePlaces(GameObject[] places)
-    {
-        //this.currentPlaces = places;
-    }*/
-
     public void InitPlaces(RectTransform character, int place)
     {
         character.localPosition = new Vector3(this.targetPositions[place][0], this.targetPositions[place][1], 0);
@@ -46,6 +43,36 @@ public class UIManager : MonoBehaviour
         
         Vector3 targetPosition = new Vector3(this.targetPositions[place][0], this.targetPositions[place][1], 0);
         StartCoroutine(SmoothChange(character, targetPosition));
+
+    }
+
+    public void ChangeItems(RectTransform character, int item)
+    {
+        //Get itemslot from character
+
+        RectTransform[] rectRansforms = character.GetComponentsInChildren<RectTransform>();
+        RectTransform itemSlot = null;
+
+        foreach (RectTransform r in rectRansforms)
+        {
+            if (r != character)
+            {
+                //Debug.Log(character + "found itemslot");
+                itemSlot = r;
+                break;
+            }
+        }
+
+        //int count = 0;
+        foreach(Transform t in itemSlot.transform)
+        {
+            GameObject.Destroy(t.gameObject);
+            //Debug.Log(character + "itemslot children: " + count++);
+        }
+
+
+        GameObject go = Instantiate(this.items[item], new Vector3(0, 0, 0), Quaternion.identity);
+        go.transform.SetParent(itemSlot, false);
 
     }
 

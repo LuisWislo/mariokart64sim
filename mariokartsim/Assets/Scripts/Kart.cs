@@ -11,7 +11,7 @@ public class Kart : MonoBehaviour
     };
 
     private int place;
-    private string item;
+    private int item;
     public Transform kart;
     private UIManager ui;
     private Canvas canvas;
@@ -57,7 +57,7 @@ public class Kart : MonoBehaviour
         this.syncer = this.syncManager.GetComponent<HMMSync>();
         this.place = this.currentIWP = (int)Int64.Parse(this.name.Substring(4)) - 1;
         this.ui.InitPlaces(this.character, this.place);
-        this.item = "";
+        this.item = 0;
         GetInfo(); //was commented
         targetIWP = innerWP[(this.currentIWP + 1) % 8];
     }
@@ -77,6 +77,7 @@ public class Kart : MonoBehaviour
         {
             //Asignar valores a GUI
             this.ui.ChangePlaces(this.character, this.place);
+            this.ui.ChangeItems(this.character, this.item);
             /*print("Got place: " + places[this.place]);
             print("Got item: " + this.item);*/
             GetInfo();
