@@ -13,6 +13,9 @@ public class Kart : MonoBehaviour
     private int place;
     private string item;
     public Transform kart;
+    private UIManager ui;
+    private Canvas canvas;
+    public RectTransform character;
     private Transform kartManager;
     private GameObject syncManager;
     private HMMSync syncer;
@@ -30,6 +33,8 @@ public class Kart : MonoBehaviour
 
     void Start()
     {
+        this.canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        this.ui = this.canvas.GetComponent<UIManager>();
         this.kartManager = GameObject.Find("KartManager").transform;
         innerWP = new Transform[8];
         for (int wp = 0; wp < innerWP.Length; wp++)
@@ -49,6 +54,7 @@ public class Kart : MonoBehaviour
         this.syncManager = GameObject.Find("SyncManager");
         this.syncer = this.syncManager.GetComponent<HMMSync>();
         this.place = this.currentIWP = (int)Int64.Parse(this.name.Substring(4)) - 1;
+        this.ui.InitPlaces(this.character, this.place);
         this.item = "";
         //GetInfo();
         targetIWP = innerWP[(this.currentIWP + 1) % 8];
@@ -68,6 +74,7 @@ public class Kart : MonoBehaviour
         if(collider.tag == "item")
         {
             //Asignar valores a GUI
+            this.ui.ChangePlaces(this.character, this.place);
             print("Got place: " + places[this.place]);
             print("Got item: " + this.item);
             //GetInfo();
