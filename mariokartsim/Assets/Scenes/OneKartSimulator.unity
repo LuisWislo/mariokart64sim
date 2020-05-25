@@ -1788,6 +1788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kart: {fileID: 583750370}
+  ui: {fileID: 2036795430}
   character: {fileID: 732449953}
 --- !u!4 &583750370 stripped
 Transform:
@@ -2005,6 +2006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kart: {fileID: 638909215}
+  ui: {fileID: 2036795430}
   character: {fileID: 1786792040}
 --- !u!1 &660248658 stripped
 GameObject:
@@ -2346,6 +2348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kart: {fileID: 734840675}
+  ui: {fileID: 2036795430}
   character: {fileID: 1809875821}
 --- !u!1001 &750046411
 PrefabInstance:
@@ -2815,6 +2818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kart: {fileID: 936896512}
+  ui: {fileID: 2036795430}
   character: {fileID: 1024219917}
 --- !u!1001 &944065808
 PrefabInstance:
@@ -3485,6 +3489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kart: {fileID: 1109640957}
+  ui: {fileID: 2036795430}
   character: {fileID: 333565777}
 --- !u!1001 &1111755443
 PrefabInstance:
@@ -3872,6 +3877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kart: {fileID: 1146999948}
+  ui: {fileID: 2036795430}
   character: {fileID: 2128653478}
 --- !u!1 &1179839966 stripped
 GameObject:
@@ -4058,6 +4064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kart: {fileID: 1251954371}
+  ui: {fileID: 2036795430}
   character: {fileID: 580109660}
 --- !u!1001 &1257431215
 PrefabInstance:
@@ -4173,6 +4180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kart: {fileID: 1257431217}
+  ui: {fileID: 2036795430}
   character: {fileID: 1241940677}
 --- !u!1 &1290796422 stripped
 GameObject:

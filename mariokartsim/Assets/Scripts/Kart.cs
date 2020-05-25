@@ -13,8 +13,8 @@ public class Kart : MonoBehaviour
     private int place;
     private int item;
     public Transform kart;
-    private UIManager ui;
-    private Canvas canvas;
+    public UIManager ui;
+    //public Canvas canvas;
     public RectTransform character;
     private Transform kartManager;
     private GameObject syncManager;
@@ -33,9 +33,10 @@ public class Kart : MonoBehaviour
 
     void Start()
     {
-        this.canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        //this.canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         //Debug.Log(this.canvas);
-        this.ui = this.canvas.GetComponent<UIManager>();
+        //this.ui = this.canvas.GetComponent<UIManager>();
+        //Debug.Log("Got ui: " + this.character + ": " + this.ui.simpleMsg());
         //Debug.Log(this.ui);
         this.kartManager = GameObject.Find("KartManager").transform;
         innerWP = new Transform[8];
@@ -59,6 +60,7 @@ public class Kart : MonoBehaviour
         this.syncManager = GameObject.Find("SyncManager");
         this.syncer = this.syncManager.GetComponent<HMMSync>();
         this.place = this.currentIWP = (int)Int64.Parse(this.name.Substring(4)) - 1;
+        //Debug.Log("character should exist: " + this.character);
         this.ui.InitPlaces(this.character, this.place);
         this.item = 0;
         GetInfo(); //was commented

@@ -33,8 +33,14 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public string simpleMsg()
+    {
+        return "Very simple message";
+    }
+
     public void InitPlaces(RectTransform character, int place)
     {
+        //Debug.Log(character);
         character.localPosition = new Vector3(this.targetPositions[place][0], this.targetPositions[place][1], 0);
     }
 
