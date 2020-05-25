@@ -13,18 +13,43 @@ public class Kart : MonoBehaviour
     private int place;
     private string item;
     public Transform kart;
-    // Start is called before the first frame update
+    private GameObject syncManager;
+    private HMMSync syncer;
+
+    private int currentWayPoint = 1; //Sigue indices de 0 a n-1
+    private int currentLap = 1;
+    private int laps = 3;
+    private float speed = 10f;
+    private int availableWaypoints = 29;
+    Transform targetWayPoint;
+    private Transform[] wayPointList; //Sigue indices de 0 a n-1
+
     void Start()
     {
-        this.place = Int32.Parse(this.name.Substring(4));
+        this.syncManager = GameObject.Find("SyncManager");
+        this.syncer = this.syncManager.GetComponent<HMMSync>();
+        this.place = Int32.Parse(this.name.Substring(4)) - 1;
         this.item = "";
         GetInfo();
-    }
 
-    // Update is called once per frame
+        wayPointList = new Transform[availableWaypoints];
+        for (int wp = 0; wp < wayPointList.Length; wp++)
+        {
+            wayPointList[wp] = GameObject.Find("Waypoint" + (wp)).transform;
+        }
+        targetWayPoint = wayPointList[currentWayPoint];
+    }
+    
     void Update()
     {
-        
+        if (currentLap <= laps)
+        {
+            Walk();
+            if (transform.position == targetWayPoint.position)
+            {
+                UpdateWaypoint();
+            }
+        }
     }
 
     void OnTriggerEnter(Collider collider)
@@ -40,7 +65,24 @@ public class Kart : MonoBehaviour
 
     void GetInfo()
     {
-        //this.place = ItemBox.getPlace(this.place);
-        //this.item = ItemBox.getItem(this.place);
+        this.place = this.syncer.GetPlace(this.place);
+        this.item = ItemBox.getItem(this.place);
+    }
+
+    void Walk()
+    {
+        transform.forward = Vector3.RotateTowards(transform.forward, targetWayPoint.position - transform.position, speed * Time.deltaTime, 0.0f);
+        transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position, speed * Time.deltaTime);
+    }
+
+    void UpdateWaypoint()
+    {
+        if (currentWayPoint == 0)
+        {
+            currentLap++;
+        }
+
+        currentWayPoint = (currentWayPoint + 1) % (availableWaypoints);
+        targetWayPoint = wayPointList[currentWayPoint];
     }
 }
