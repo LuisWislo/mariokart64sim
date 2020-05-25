@@ -11,8 +11,11 @@ public class Kart : MonoBehaviour
     };
 
     private int place;
-    private string item;
+    private int item;
     public Transform kart;
+    private UIManager ui;
+    private Canvas canvas;
+    public RectTransform character;
     private Transform kartManager;
     private GameObject syncManager;
     private HMMSync syncer;
@@ -30,6 +33,10 @@ public class Kart : MonoBehaviour
 
     void Start()
     {
+        this.canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        //Debug.Log(this.canvas);
+        this.ui = this.canvas.GetComponent<UIManager>();
+        //Debug.Log(this.ui);
         this.kartManager = GameObject.Find("KartManager").transform;
         innerWP = new Transform[8];
         for (int wp = 0; wp < innerWP.Length; wp++)
@@ -52,9 +59,10 @@ public class Kart : MonoBehaviour
         this.syncManager = GameObject.Find("SyncManager");
         this.syncer = this.syncManager.GetComponent<HMMSync>();
         this.place = this.currentIWP = (int)Int64.Parse(this.name.Substring(4)) - 1;
-        this.item = "";
-        GetInfo();
-        targetIWP = innerWP[this.place];
+        this.ui.InitPlaces(this.character, this.place);
+        this.item = 0;
+        GetInfo(); //was commented
+        targetIWP = innerWP[(this.currentIWP + 1) % 8];
     }
     
     void Update()
@@ -71,8 +79,8 @@ public class Kart : MonoBehaviour
         if(collider.tag == "item")
         {
             //Asignar valores a GUI
-            print(this.name + " got place: " + places[this.place]);
-            print(this.name + " got item: " + this.item);
+            this.ui.ChangePlaces(this.character, this.place);
+            this.ui.ChangeItems(this.character, this.item);
             GetInfo();
             UpdateWaypoints();
         }
@@ -80,7 +88,7 @@ public class Kart : MonoBehaviour
 
     void GetInfo()
     {
-        this.place = this.syncer.GetPlace(this.place);
+        this.place = UnityEngine.Random.Range(0, 8);//this.syncer.GetPlace(this.place);
         this.item = ItemBox.getItem(this.place);
     }
 

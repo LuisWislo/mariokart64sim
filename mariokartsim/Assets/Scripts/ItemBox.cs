@@ -20,6 +20,7 @@ public static class ItemBox
 
     private static string[] itemNames = new string[]
     {
+        //"None",
         "Banana",
         "Banana Bunch",
         "Green Shell",
@@ -36,9 +37,9 @@ public static class ItemBox
         "Super Mushroom"
     };
 
-    public static string getItem(int place)
+    public static int getItem(int place)
     {
-        string newItem = "";
+        int newItem = 0;
         bool itemFound = false;
         while (!itemFound)
         {
@@ -54,7 +55,7 @@ public static class ItemBox
                     if (rng <= portion)
                     {
                         itemFound = true;
-                        newItem = itemNames[i];
+                        newItem = i;
                         break;
                     }
                 }
