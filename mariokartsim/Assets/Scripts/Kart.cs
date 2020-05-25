@@ -19,7 +19,7 @@ public class Kart : MonoBehaviour
     private int currentWayPoint = 1; //Sigue indices de 0 a n-1
     private int currentLap = 1;
     private int laps = 3;
-    private float speed = 10f;
+    private float speed = 15f;
     private int availableWaypoints = 25;
     Transform targetWayPoint;
     private Transform[] wayPointList; //Sigue indices de 0 a n-1
@@ -68,13 +68,13 @@ public class Kart : MonoBehaviour
         this.place = this.syncer.GetPlace(this.place);
         this.item = ItemBox.getItem(this.place);
     }
-
+    
     void Walk()
     {
         transform.forward = Vector3.RotateTowards(transform.forward, targetWayPoint.position - transform.position, speed * Time.deltaTime, 0.0f);
         transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position, speed * Time.deltaTime);
     }
-
+    
     void UpdateWaypoint()
     {
         if (currentWayPoint == 0)

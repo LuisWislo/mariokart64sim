@@ -44,7 +44,6 @@ public static class ItemBox
         {
             float random = Random.Range(0.0f, 1.0f);
             float rng = (float) System.Math.Round(random * 100f) / 100f;
-
             if (rng > 0.0f)
             {
                 float portion = 0;
