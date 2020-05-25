@@ -16,6 +16,18 @@ public static class ItemBox
         new float[] {0.57f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.09f, 0.06f, 0.09f, 0.00f, 0.13f, 0.00f, 0.00f, 0.02f, 0.04f}  //8th
     };
 
+    private static float[][] itemProbabilities2 = new float[][]
+    {
+        new float[] {0.0f, 0.30f, 0.05f, 0.30f, 0.05f, 0.05f, 0.00f, 0.00f, 0.00f, 0.10f, 0.00f, 0.05f, 0.10f, 0.00f, 0.00f}, //1st
+        new float[] {0.0f, 0.00f, 0.05f, 0.05f, 0.10f, 0.15f, 0.20f, 0.00f, 0.05f, 0.05f, 0.05f, 0.05f, 0.05f, 0.15f, 0.05f}, //2nd
+        new float[] {0.0f, 0.00f, 0.00f, 0.00f, 0.10f, 0.20f, 0.20f, 0.00f, 0.05f, 0.00f, 0.10f, 0.00f, 0.05f, 0.20f, 0.10f}, //3rd
+        new float[] {0.0f, 0.00f, 0.00f, 0.00f, 0.00f, 0.15f, 0.20f, 0.05f, 0.10f, 0.00f, 0.15f, 0.00f, 0.05f, 0.20f, 0.10f}, //4th
+        new float[] {0.0f, 0.00f, 0.00f, 0.00f, 0.00f, 0.10f, 0.20f, 0.05f, 0.10f, 0.00f, 0.15f, 0.00f, 0.05f, 0.25f, 0.10f}, //5th
+        new float[] {0.0f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.20f, 0.10f, 0.15f, 0.00f, 0.20f, 0.00f, 0.00f, 0.25f, 0.10f}, //6th
+        new float[] {0.0f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.20f, 0.10f, 0.20f, 0.00f, 0.30f, 0.00f, 0.00f, 0.10f, 0.10f}, //7th
+        new float[] {0.0f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.20f, 0.15f, 0.20f, 0.00f, 0.30f, 0.00f, 0.00f, 0.05f, 0.10f}  //8th
+    };
+
     private static int noItems = itemProbabilities[0].Length;
 
     private static string[] itemNames = new string[]
@@ -51,7 +63,7 @@ public static class ItemBox
 
                 for (int i = 0; i < noItems; i++)
                 {
-                    portion += itemProbabilities[place][i];
+                    portion += itemProbabilities2[place][i];
                     if (rng <= portion)
                     {
                         itemFound = true;
