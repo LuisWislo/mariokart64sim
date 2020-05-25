@@ -19,14 +19,14 @@ public class Kart : MonoBehaviour
     
     private Transform[] innerWP;
     private Transform targetIWP;
-    private float speed = 2f;
+    private float speed = 3f;
     private int currentIWP;
     private int availableIWP = 8;
 
-    private int availableWaypoints = 25;
+    private int availableWaypoints = 7;
     Transform targetWayPoint;
     private Transform[] wayPointList; //Sigue indices de 0 a n-1
-    private int currentWayPoint = 1; //Sigue indices de 0 a n-1
+    private int currentWayPoint = 0; //Sigue indices de 0 a n-1
 
     void Start()
     {
@@ -39,28 +39,31 @@ public class Kart : MonoBehaviour
         }
 
         wayPointList = new Transform[availableWaypoints];
-        for (int wp = 0; wp < wayPointList.Length; wp++)
-        {
-            wayPointList[wp] = GameObject.Find("Waypoint" + (wp)).transform;
-            //wayPointList[wp].GetComponent<MeshRenderer>().enabled = false;
-        }
+        wayPointList[0] = GameObject.Find("Waypoint3").transform;
+        wayPointList[1] = GameObject.Find("Waypoint9").transform;
+        wayPointList[2] = GameObject.Find("Waypoint11").transform;
+        wayPointList[3] = GameObject.Find("Waypoint16").transform;
+        wayPointList[4] = GameObject.Find("Waypoint20").transform;
+        wayPointList[5] = GameObject.Find("Waypoint21").transform;
+        wayPointList[6] = GameObject.Find("Waypoint24").transform;
+      
         targetWayPoint = wayPointList[currentWayPoint];
 
         this.syncManager = GameObject.Find("SyncManager");
         this.syncer = this.syncManager.GetComponent<HMMSync>();
         this.place = this.currentIWP = (int)Int64.Parse(this.name.Substring(4)) - 1;
         this.item = "";
-        //GetInfo();
-        targetIWP = innerWP[(this.currentIWP + 1) % 8];
+        GetInfo();
+        targetIWP = innerWP[this.place];
     }
     
     void Update()
     {
         Walk();
-        if (this.kartManager.position == targetWayPoint.position)
-        {
-            UpdateWaypoint();
-        }
+        //if (this.kartManager.position == targetWayPoint.position)
+        //{
+            
+        //}
     }
 
     void OnTriggerEnter(Collider collider)
@@ -68,9 +71,10 @@ public class Kart : MonoBehaviour
         if(collider.tag == "item")
         {
             //Asignar valores a GUI
-            print("Got place: " + places[this.place]);
-            print("Got item: " + this.item);
-            //GetInfo();
+            print(this.name + " got place: " + places[this.place]);
+            print(this.name + " got item: " + this.item);
+            GetInfo();
+            UpdateWaypoints();
         }
     }
 
@@ -82,13 +86,15 @@ public class Kart : MonoBehaviour
 
     void Walk()
     {
-        transform.forward = Vector3.RotateTowards(transform.forward, targetIWP.position - transform.position, speed * Time.deltaTime, 0.0f);
-        transform.position = Vector3.MoveTowards(transform.position, targetIWP.position, speed * Time.deltaTime);
+        transform.forward = Vector3.RotateTowards(transform.forward, targetIWP.position - transform.position, (speed * Time.deltaTime) / Vector3.Distance(this.kartManager.position, targetWayPoint.position), 0.0f);
+        transform.position = Vector3.MoveTowards(transform.position, targetIWP.position, (speed * Time.deltaTime)/Vector3.Distance(this.kartManager.position, targetWayPoint.position));
     }
 
-    void UpdateWaypoint()
+    void UpdateWaypoints()
     {
-        currentIWP = (currentIWP + 1) % (availableIWP);
+        currentIWP = this.place;
         targetIWP = innerWP[currentIWP];
+        currentWayPoint = (currentWayPoint + 1) % (availableWaypoints);
+        targetWayPoint = wayPointList[currentWayPoint];
     }
 }
