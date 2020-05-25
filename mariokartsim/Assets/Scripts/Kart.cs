@@ -88,7 +88,7 @@ public class Kart : MonoBehaviour
 
     void GetInfo()
     {
-        this.place = UnityEngine.Random.Range(0, 8);//this.syncer.GetPlace(this.place);
+        this.place = this.syncer.GetPlace(this.place);
         this.item = ItemBox.getItem(this.place);
     }
 
