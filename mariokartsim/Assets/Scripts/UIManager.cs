@@ -36,23 +36,30 @@ public class UIManager : MonoBehaviour
         //this.currentPlaces = places;
     }*/
 
-    public void InitPlaces(RectTransform characterPortrait, int place)
+    public void InitPlaces(RectTransform character, int place)
     {
-        characterPortrait.localPosition = new Vector3(this.targetPositions[place][0], this.targetPositions[place][1], 0);
+        character.localPosition = new Vector3(this.targetPositions[place][0], this.targetPositions[place][1], 0);
     }
 
-    public void ChangePlaces(RectTransform characterPortrait, int place)
+    public void ChangePlaces(RectTransform character, int place)
     {
-        Debug.Log("Going places");
+        
+        Vector3 targetPosition = new Vector3(this.targetPositions[place][0], this.targetPositions[place][1], 0);
+        StartCoroutine(SmoothChange(character, targetPosition));
 
-        /*Vector3 targetPosition = new Vector3(this.targetPositions[place][0], this.targetPositions[place][1], 0);
-        while(characterPortrait.localPosition != targetPosition)
+    }
+
+    IEnumerator SmoothChange(RectTransform character, Vector3 targetPosition)
+    {
+        while (Vector3.Distance(character.localPosition, targetPosition) > 0.01f)
         {
-            Debug.Log(characterPortrait + "in while...");
-            characterPortrait.localPosition = Vector3.MoveTowards(characterPortrait.localPosition, new Vector3(this.targetPositions[place][0], this.targetPositions[place][1], 0), 0.05f * Time.deltaTime);
-        }*/
+            character.localPosition = Vector3.MoveTowards(character.localPosition, targetPosition, Time.deltaTime * 5000f);
+            yield return new WaitForSeconds(0.02f);
+        }
 
     }
+
+
 
 
 }

@@ -34,7 +34,9 @@ public class Kart : MonoBehaviour
     void Start()
     {
         this.canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        //Debug.Log(this.canvas);
         this.ui = this.canvas.GetComponent<UIManager>();
+        //Debug.Log(this.ui);
         this.kartManager = GameObject.Find("KartManager").transform;
         innerWP = new Transform[8];
         for (int wp = 0; wp < innerWP.Length; wp++)
@@ -56,7 +58,7 @@ public class Kart : MonoBehaviour
         this.place = this.currentIWP = (int)Int64.Parse(this.name.Substring(4)) - 1;
         this.ui.InitPlaces(this.character, this.place);
         this.item = "";
-        //GetInfo();
+        GetInfo(); //was commented
         targetIWP = innerWP[(this.currentIWP + 1) % 8];
     }
     
@@ -75,15 +77,15 @@ public class Kart : MonoBehaviour
         {
             //Asignar valores a GUI
             this.ui.ChangePlaces(this.character, this.place);
-            print("Got place: " + places[this.place]);
-            print("Got item: " + this.item);
-            //GetInfo();
+            /*print("Got place: " + places[this.place]);
+            print("Got item: " + this.item);*/
+            GetInfo();
         }
     }
 
     void GetInfo()
     {
-        this.place = this.syncer.GetPlace(this.place);
+        this.place = UnityEngine.Random.Range(0, 8);//this.syncer.GetPlace(this.place);
         this.item = ItemBox.getItem(this.place);
     }
 
