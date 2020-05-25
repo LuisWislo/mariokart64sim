@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangePlaces(RectTransform character, int place)
     {
-        
+        Debug.Log("UIManager: " +  place);
         Vector3 targetPosition = new Vector3(this.targetPositions[place][0], this.targetPositions[place][1], 0);
         StartCoroutine(SmoothChange(character, targetPosition));
 

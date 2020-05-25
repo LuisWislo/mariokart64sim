@@ -56,20 +56,34 @@ public class HMMSync : MonoBehaviour
     public int GetPlace(int place)
     {
         int newPlace = -1;
-        float random = Random.Range(0.0001f, 0.9999f);
-        float rng = (float)System.Math.Round(random * 100f) / 100f;
-        
-        float portion = 0;
-        for (int i = 0; i < syncedPlaces[place].Length; i++)
+        if (this.usedPlaces < 7)
         {
-            portion += syncedPlaces[place][i];
-            if (rng <= portion)
+            float random = Random.Range(0.0001f, 0.9999f);
+            float rng = (float) System.Math.Round(random * 100f) / 100f;
+
+            float portion = 0;
+            for (int i = 0; i < syncedPlaces[place].Length; i++)
             {
-                newPlace = i;
-                break;
+                portion += syncedPlaces[place][i];
+                if (rng <= portion)
+                {
+                    newPlace = i;
+                    break;
+                }
             }
         }
-        
+        else
+        {
+            for (int i = 0; i < syncedPlaces[place].Length; i++)
+            {
+                if (this.syncedPlaces[place][i] > 0.0f)
+                {
+                    newPlace = i;
+                    break;
+                }
+            }
+        }
+
         this.usedPlaces++;
         if (this.usedPlaces < syncedPlaces[place].Length)
         {
