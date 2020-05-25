@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Waypoints : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Waypoints : MonoBehaviour
     private int availableWaypoints = 25;
     Transform targetWayPoint;
     private Transform[] wayPointList; //Sigue indices de 0 a n-1
+    public Text lapText;
 
     void Start()
     {
@@ -26,6 +28,7 @@ public class Waypoints : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        setLap();
         if (currentLap <= laps)
         {
             Walk();
@@ -51,5 +54,11 @@ public class Waypoints : MonoBehaviour
 
         currentWayPoint = (currentWayPoint + 1) % (availableWaypoints);
         targetWayPoint = wayPointList[currentWayPoint];
+    }
+
+    private void setLap()
+    {
+        if(this.currentLap <= 3)
+            this.lapText.text = "Laps: " + this.currentLap + "/3";
     }
 }
