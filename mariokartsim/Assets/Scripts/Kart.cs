@@ -63,7 +63,8 @@ public class Kart : MonoBehaviour
         this.ui.InitPlaces(this.character, this.place);
         this.item = 0;
         GetInfo(); //was commented
-        targetIWP = innerWP[(this.currentIWP + 1) % 8];
+        this.currentIWP = this.place;
+        targetIWP = innerWP[this.currentIWP];
     }
     
     void Update()

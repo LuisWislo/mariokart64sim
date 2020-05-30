@@ -8,7 +8,7 @@ public class Waypoints : MonoBehaviour
     private int currentWayPoint = 1; //Sigue indices de 0 a n-1
     private int currentLap = 1;
     private int laps = 3;
-    private float speed = 2f;
+    private float speed = 3.5f;
     private int availableWaypoints = 25;
     Transform targetWayPoint;
     private Transform[] wayPointList; //Sigue indices de 0 a n-1

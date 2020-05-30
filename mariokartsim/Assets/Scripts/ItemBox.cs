@@ -63,7 +63,7 @@ public static class ItemBox
 
                 for (int i = 0; i < noItems; i++)
                 {
-                    portion += itemProbabilities2[place][i];
+                    portion += itemProbabilities[place][i];
                     if (rng <= portion)
                     {
                         itemFound = true;
